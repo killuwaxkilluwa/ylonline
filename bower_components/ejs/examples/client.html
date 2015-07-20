@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script src="../ejs.js"></script>
+    <script id="users" type="text/template">
+      <% if (names.length) { %>
+        <ul>
+          <% names.forEach(function(name){ %>
+            <li><%= name %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+    </script>
+    <script>
+      onload = function(){
+        var users = document.getElementById('users').innerHTML;
+        var names = ['loki', 'tobi', 'jane'];
+        var html = ejs.render(users, { names: names });
+        document.body.innerHTML = html;
+
+
+        var data = {
+        title: "ejs模版测试"
+    };
+
+    var title = document.getElementById('pagehead');
+    //模版渲染
+    title.innerHTML = new EJS({
+        url : "test.ejs"     //模版的地址
+    }).render(data);
+      }
+    </script>
+  </head>
+  <body>
+  <div id="pagehead"></div>
+  </body>
+</html>
