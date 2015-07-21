@@ -35,7 +35,7 @@ require(["jquery", "Table", "Modal", "Tmpl", "moment","datetimepicker"], functio
     $("#side-menu a").click(function(){
         switch($(this).attr("id")){
             case "fpslideadv-nav":
-                $(".addinfobtn").text("插入首页轮播广告").attr("id", "fpslideadv-addbtn");
+                $(".addinfobtn").text("插入首页轮播图片").attr("id", "fpslideadv-addbtn");
                 break;
             case "startadv-nav":
                 $(".addinfobtn").text("插入启动画面").attr("id", "startadv-btn");
@@ -50,19 +50,25 @@ require(["jquery", "Table", "Modal", "Tmpl", "moment","datetimepicker"], functio
 
     $(".addinfobtn").click(function(){
         if($(this).attr("id") == "fpslideadv-addbtn"){
-            $('#datetimepicker1').datetimepicker({
-                locale: 'zh-cn'
-            });
-            $("#fpslideadv-modal").modal("show");
+            new Modal.Modal().createAdvModal("#fpslideadv-modal", "show", Tmpl.getFpslideadvTmplate(), "#fpdate");
         }else if($(this).attr("id") == "startadv-btn"){
-           
+            new Modal.Modal().createAdvModal("#startadv-modal", "show", Tmpl.getStartadvTmplate(), "#stdate");
         }else if($(this).attr("id") == "fpcontentadv-btn"){
-           
+           new Modal.Modal().createAdvModal("#fpcontentadv-modal", "show", Tmpl.getFpcontentadvTmplate(), "#fpcdate");
         }
         
     });
 
     
+    // $("#fpslideadv-modal .select-template").change(function(){
+    //     $("#fpslideadv-modal .panel").html(Tmpl.getAdvTemplate($(this).val()));
+
+    // });
+
+    // $(document).on("change", "#fpslideadv-modal .select-template", function(){
+    //     $("#fpslideadv-modal .panel").html(Tmpl.getAdvTemplate($(this).val()));
+    // });
+
     // $("#insertfirpage").click(function(){
     //     $('#datetimepicker1').datetimepicker({
     //         locale: 'zh-cn'

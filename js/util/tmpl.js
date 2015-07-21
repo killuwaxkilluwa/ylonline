@@ -1,5 +1,8 @@
 define(["jquery", "baiduTemplate"], function($, bt){
 	var tmplate = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%if(shops.length>1){%><div class="form-group"><label>发布范围 :  </label><%for(var i=0; i<shops.length; i++){%><label class="checkbox-inline"> <input type="checkbox"> <%=shops[i]%></label><%}%></div><%}%><%if(domid == "roomInfoModal"){%><div class="form-group custom-search-form"><label>客房类型 : </label><div><select class="form-control custom-select" id="select-roomtype"><%for(var j=0; j<roomtype.length; j++){%><option><%=roomtype[j]%></option><%}%></select><a type="button" class="btn btn-default" id="addRoomType">添加客房类型</a></div></div><%}%><%if(inputs.length>1){ %> <%for(var k=0; k<inputs.length; k++){%><%if(inputs[k].type == "file"){%><div class="form-group"><label for="<%=inputs[k].id%>"><%=inputs[k].title%></label><input type="<%=inputs[k].type%>" id="<%=inputs[k].id%>" placeholder="<%=inputs[k].title%>"></div><%}else{%><div class="form-group"><label for="<%=inputs[k].id%>"><%=inputs[k].title%></label><input type="<%=inputs[k].type%>" class="form-control" id="<%=inputs[k].id%>" placeholder="<%=inputs[k].title%>"></div><%}%><%}}%><a type="button" class="btn btn-default addCustomData">添加自定义字段</a><%if(customdata.length > 0){for (var m=0; m<customdata.length; m++){%><div class="form-group customadd"><label><%=customdata[m].title%></label><input type="<%=customdata[m].type%>" class="form-control" placeholder="<%=customdata[m].title%>"></div><%}}%></div><div class="modal-footer"><a type="button" class="btn btn-default" data-dismiss="modal">关闭</a><a data-toggle="modal" href="#<%=domid%>" type="button" class="btn btn-primary" id="<%=save%>">确定</a></div></div>';
+	var tmplateadvtmp = '<div class="panel-body row"><div class="col-md-7"><div class="templatecontent"><%for(var i=0;i<inputs.length;i++){%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%}%></div></div><div class="col-md-5"><img src="<%=pic%>" alt="" width="250" class="img-thumbnail"></div></div>';
+    var templateadv = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%for(var i=0; i<inputs.length;i++){%><%if(inputs[i].title == "有效期"){%><div class="form-group"><label for="<%=inputs[i].id%>">有效期: </label><div class="input-group date" id="<%=inputs[i].id%>"><input type="<%=inputs[i].type%>" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></div><%}else{%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%}}%><div class="form-group"><label>发布范围 :  </label><%for(var j=0; j<shops.length; j++){%><label class="checkbox-inline"><input type="checkbox"><%=shops[j]%></label><%}%></div><%if(template.length>0){%><div class="form-group template"><label>点击上传图片跳转页面设置</label><div class="form-group width-half"><label>选择模版 : </label><div><select class="form-control select-template"><%for(var k=0; k<template.length; k++){%><option value="<%=template[k]%>"><%=template[k]%></option><%}%></select></div></div><div class="panel panel-default"></div></div><%}%></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button><a data-toggle="modal" href="#<%=domid%>" type="button" class="btn btn-primary" id="<%=save%>">保存</a></div></div></div></div>';
+
 	var bt=baidu.template;
 
 	function getRoomTmplate(){	
@@ -48,14 +51,85 @@ define(["jquery", "baiduTemplate"], function($, bt){
 			modaltitle: "插入菜单信息",
 			shops: [" shop1"," shop2"],
 			inputs: [
-			{id: "s-name", title: "菜单名称", type: "text"},
-			{id: "s-pic", title: "上传图片(可以不上传)", type: "file"},
-			{id:"s-price", title: "单价", type: "number"},
-			{id:"s-des", title: "详情介绍", type: "area"}],
+			{id: "m-name", title: "菜单名称", type: "text"},
+			{id: "m-pic", title: "上传图片(可以不上传)", type: "file"},
+			{id:"m-price", title: "单价", type: "number"},
+			{id:"m-des", title: "详情介绍", type: "area"}],
 			customdata: [{title: "test",type:"text"},{title: "tests",type: "number"}],
 			save: "saveMenuInfo"
 		}
 		return bt(tmplate, menu);
+	}
+
+	function getFpslideadvTmplate(){
+		var adv = {
+			domid: "fpslideadv-modal",
+			modaltitle: "首页轮播广告",
+			shops: [" shop1"," shop2"],
+			inputs: [
+			{id: "fptitle", title: "标题", type: "text"},
+			{id: "fppic", title: "上传图片", type: "file"},
+			{id:"fpdate", title: "有效期", type: "text"}],
+			template: ["a","b"],
+			save: "fpslideadv-save"
+		}
+		return bt(templateadv, adv);
+	}
+
+	function getStartadvTmplate(){
+		var adv = {
+			domid: "startadv-modal",
+			modaltitle: "启动画面",
+			shops: [" shop1"," shop2"],
+			inputs: [
+			{id: "stpic", title: "上传图片", type: "file"},
+			{id:"stdate", title: "有效期", type: "text"}],
+			template: [],
+			save: "startadv-save"
+		}
+		return bt(templateadv, adv);
+	}
+
+	function getFpcontentadvTmplate(){
+		var adv = {
+			domid: "fpcontentadv-modal",
+			modaltitle: "首页内容区广告",
+			shops: [" shop1"," shop2"],
+			inputs: [
+			{id: "fpctitle", title: "标题", type: "text"},
+			{id: "fpcsubtitle", title: "子标题", type: "text"},
+			{id: "fpcpic", title: "上传图片", type: "file"},
+			{id:"fpcdate", title: "有效期", type: "text"}],
+			template: ["a","b"],
+			save: "fpcontentadv-save"
+		}
+		return bt(templateadv, adv);
+	}
+
+	function getAdvTemplate(template){
+		var templateA = {
+			inputs: [
+			{id: "a-title1", title: "标题1", type: "text"},
+			{id: "a-content1", title: "文本内容1", type: "text"},
+			{id: "a-pic1", title: "上传图片1", type: "file"},
+			{id: "a-title2", title: "标题2", type: "text"},
+			{id: "a-content2", title: "文本内容2", type: "text"},
+			{id: "a-pic2", title: "上传图片2", type: "file"}],
+			pic: "../img/test3.png"
+		},
+		templateB = {
+			inputs: [
+			{id: "b-title1", title: "标题1", type: "text"},
+			{id: "b-content1", title: "文本内容1", type: "text"},
+			{id: "b-pic1", title: "上传图片1", type: "file"}],
+			pic: "../img/test1.png"
+		}
+		if(template == "a"){
+			return bt(tmplateadvtmp, templateA);
+		}else{
+			return bt(tmplateadvtmp, templateB);
+		}
+		
 	}
 
 	//点击保存自定义字段
@@ -164,6 +238,10 @@ define(["jquery", "baiduTemplate"], function($, bt){
 		getServiceTmplate : getServiceTmplate,
 		getMenuTmplate : getMenuTmplate,
 		initCustomTmpl : initCustomTmpl,
-		initRoomtypeTmpl : initRoomtypeTmpl
+		initRoomtypeTmpl : initRoomtypeTmpl,
+		getAdvTemplate : getAdvTemplate,
+		getFpslideadvTmplate : getFpslideadvTmplate,
+		getStartadvTmplate : getStartadvTmplate,
+		getFpcontentadvTmplate : getFpcontentadvTmplate
 	}
 });

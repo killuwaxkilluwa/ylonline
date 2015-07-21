@@ -201,14 +201,14 @@
 
          <!-- addCustomDataModal-->
         <div class="modal fade" id="fpslideadv-modal"  tabindex="-1" remote="true" aria-hidden="true" style="display:none;" role="dialog" aria-labelledby="mySmallModalLabel">
-            <div class="modal-dialog">
+           <!-- <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         <h4 class="modal-title">首页轮播广告</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="list">
+                      
                            <div class="form-group">
                                 <label for="fptitle">标题: </label>
                                 <input type="text" class="form-control" id="fptitle" placeholder="标题">
@@ -218,8 +218,8 @@
                                 <input type="file" id="fppic" placeholder="图片">
                             </div>
                             <div class="form-group">
-                                <label for="datetimepicker1">有效期: </label>
-                                <div class='input-group date' id='datetimepicker1'>
+                                <label for="fpdate">有效期: </label>
+                                <div class='input-group date' id='fpdate'>
                                     <input type='text' class="form-control" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -234,18 +234,20 @@
                             
                             <div class="form-group template">     
                                 <label>点击上传图片跳转页面设置</label>
+                                <div class="form-group width-half">
+                                    <label>选择模版 : </label>
+                                    <div>
+                                        <select class="form-control select-template">
+                                            <option value="a">a</option>
+                                            <option value="b">b</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="panel panel-default">
+                                    
                                     <div class="panel-body row">
                                         <div class="col-md-7">
-                                            <div class="form-group">
-                                                <label>选择模版 : </label>
-                                                <div>
-                                                    <select class="form-control" id="select-template">
-                                                        <option value="a">a</option>
-                                                        <option value="b">b</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="templatecontent"> 
                                                 <div class="form-group">
                                                     <label for="tfptitle1">标题1: </label>
@@ -278,20 +280,61 @@
                                         </div>
 
                                     </div>
-                                    <!-- /.panel-body -->
+                                    
                                 </div>
                             </div>
-                        </div>
+                       
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-                        <a data-toggle="modal" href="#firpage" type="button" class="btn btn-primary" id="FirpageSave">保存</a>
+                        <a data-toggle="modal" href="#fpslideadv-modal" type="button" class="btn btn-primary" id="fpslideadv-save">保存</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- end addRoomTypeModal -->
+        
+        <div class="modal fade" id="startadv-modal"  tabindex="-1" remote="true" aria-hidden="true" style="display:none;" role="dialog" aria-labelledby="mySmallModalLabel">
+           <!--  <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">启动画面</h4>
+                    </div>
+                    <div class="modal-body">
+                      
+        
+                        <div class="form-group">
+                            <label for="stpic">上传图片: </label>
+                            <input type="file" id="stpic" placeholder="图片">
+                        </div>
+                        <div class="form-group">
+                            <label for="stdate">有效期: </label>
+                            <div class='input-group date' id='stdate'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>发布范围 :  </label>
+                            <label class="checkbox-inline"><input type="checkbox">shop1</label>
+                            <label class="checkbox-inline"><input type="checkbox">shop2</label>
+                        </div>
+                            
+                      
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                        <a data-toggle="modal" href="#startadv-modal" type="button" class="btn btn-primary" id="startadv-save">保存</a>
+                    </div>
+                </div>
+            </div> --> 
 
+        </div>
+
+        <div class="modal fade" id="fpcontentadv-modal"  tabindex="-1" remote="true" aria-hidden="true" style="display:none;" role="dialog" aria-labelledby="mySmallModalLabel"></div>
 
         
 

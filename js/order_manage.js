@@ -6,7 +6,8 @@ require.config({
         //"metisMenu": "metisMenu/metisMenu.min",
         //"sbamin": "sb-admin-2",
         "Table": "util/table",
-        "Modal": "util/modal"
+        "Modal": "util/modal",
+        "Tmpl": "util/tmpl"
     }
     //  shim : {
     //     "metisMenu" : {"deps": ["jquery"]},
@@ -15,7 +16,7 @@ require.config({
     // }
 });
 
-require(["jquery", "Table", "Modal"], function ($, Table, Modal) {
+require(["jquery", "Table", "Modal","Tmpl"], function ($, Table, Modal) {
     var url = "../pages/userdata.txt";
     var columns = [
         { "data": "userid" },

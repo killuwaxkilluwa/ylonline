@@ -20,6 +20,19 @@ define(["jquery", "Tmpl","bootstrap"], function($, Tmpl){
 		    });
 		},
 
+		createAdvModal : function(dom, state, html, datetimepickerdomid){
+			$(dom).html(html).modal(state);
+			$(dom + " .panel").html(Tmpl.getAdvTemplate("a"));
+            if(datetimepickerdomid){
+            	$(datetimepickerdomid).datetimepicker({
+                	locale: 'zh-cn'
+            	});
+            }
+            $(document).on("change", dom + " .select-template", function(){
+        		$(dom + " .panel").html(Tmpl.getAdvTemplate($(this).val()));
+    		});
+            
+		},
 		closeModal : function(dom){
 			$(dom).modal("hide");
 		},
