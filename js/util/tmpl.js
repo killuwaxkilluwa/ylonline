@@ -1,7 +1,8 @@
 define(["jquery", "baiduTemplate"], function($, bt){
-	var tmplate = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%if(shops.length>1){%><div class="form-group"><label>发布范围 :  </label><%for(var i=0; i<shops.length; i++){%><label class="checkbox-inline"> <input type="checkbox"> <%=shops[i]%></label><%}%></div><%}%><%if(domid == "roomInfoModal"){%><div class="form-group custom-search-form"><label>客房类型 : </label><div><select class="form-control custom-select" id="select-roomtype"><%for(var j=0; j<roomtype.length; j++){%><option><%=roomtype[j]%></option><%}%></select><a type="button" class="btn btn-default" id="addRoomType">添加客房类型</a></div></div><%}%><%if(inputs.length>1){ %> <%for(var k=0; k<inputs.length; k++){%><%if(inputs[k].type == "file"){%><div class="form-group"><label for="<%=inputs[k].id%>"><%=inputs[k].title%></label><input type="<%=inputs[k].type%>" id="<%=inputs[k].id%>" placeholder="<%=inputs[k].title%>"></div><%}else{%><div class="form-group"><label for="<%=inputs[k].id%>"><%=inputs[k].title%></label><input type="<%=inputs[k].type%>" class="form-control" id="<%=inputs[k].id%>" placeholder="<%=inputs[k].title%>"></div><%}%><%}}%><a type="button" class="btn btn-default addCustomData">添加自定义字段</a><%if(customdata.length > 0){for (var m=0; m<customdata.length; m++){%><div class="form-group customadd"><label><%=customdata[m].title%></label><input type="<%=customdata[m].type%>" class="form-control" placeholder="<%=customdata[m].title%>"></div><%}}%></div><div class="modal-footer"><a type="button" class="btn btn-default" data-dismiss="modal">关闭</a><a data-toggle="modal" href="#<%=domid%>" type="button" class="btn btn-primary" id="<%=save%>">确定</a></div></div>';
+	var tmplate = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%if(shops.length>1){%><div class="form-group"><label>发布范围 :  </label><%for(var i=0; i<shops.length; i++){%><label class="checkbox-inline"> <input type="checkbox"> <%=shops[i]%></label><%}%></div><%}%><%if(domid == "roomInfoModal"){%><div class="form-group custom-search-form"><label>客房类型 : </label><div><select class="form-control custom-select" id="select-roomtype"><%for(var j=0; j<roomtype.length; j++){%><option value="<%=j%>"><%=roomtype[j]%></option><%}%></select><a type="button" class="btn btn-default" id="addRoomType">添加客房类型</a></div></div><%}%><%if(inputs.length>1){ %> <%for(var k=0; k<inputs.length; k++){%><%if(inputs[k].type == "file"){%><div class="form-group"><label for="<%=inputs[k].id%>"><%=inputs[k].title%></label><input type="<%=inputs[k].type%>" id="<%=inputs[k].id%>" placeholder="<%=inputs[k].title%>"></div><%}else{%><div class="form-group"><label for="<%=inputs[k].id%>"><%=inputs[k].title%></label><input type="<%=inputs[k].type%>" class="form-control" id="<%=inputs[k].id%>" placeholder="<%=inputs[k].title%>"></div><%}%><%}}%><a type="button" class="btn btn-default addCustomData">添加自定义字段</a><%if(customdata.length > 0){for (var m=0; m<customdata.length; m++){%><div class="form-group customadd"><label><%=customdata[m].title%></label><input type="<%=customdata[m].type%>" class="form-control" placeholder="<%=customdata[m].title%>"></div><%}}%></div><div class="modal-footer"><a type="button" class="btn btn-default" data-dismiss="modal">关闭</a><a data-toggle="modal" href="#<%=domid%>" type="button" class="btn btn-primary" id="<%=save%>">确定</a></div></div>';
 	var tmplateadvtmp = '<div class="panel-body row"><div class="col-md-7"><div class="templatecontent"><%for(var i=0;i<inputs.length;i++){%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%}%></div></div><div class="col-md-5"><img src="<%=pic%>" alt="" width="250" class="img-thumbnail"></div></div>';
     var templateadv = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%for(var i=0; i<inputs.length;i++){%><%if(inputs[i].title == "有效期"){%><div class="form-group"><label for="<%=inputs[i].id%>">有效期: </label><div class="input-group date" id="<%=inputs[i].id%>"><input type="<%=inputs[i].type%>" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></div><%}else{%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%}}%><div class="form-group"><label>发布范围 :  </label><%for(var j=0; j<shops.length; j++){%><label class="checkbox-inline"><input type="checkbox"><%=shops[j]%></label><%}%></div><%if(template.length>0){%><div class="form-group template"><label>点击上传图片跳转页面设置</label><div class="form-group width-half"><label>选择模版 : </label><div><select class="form-control select-template"><%for(var k=0; k<template.length; k++){%><option value="<%=template[k]%>"><%=template[k]%></option><%}%></select></div></div><div class="panel panel-default"></div></div><%}%></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button><a data-toggle="modal" href="#<%=domid%>" type="button" class="btn btn-primary" id="<%=save%>">保存</a></div></div></div></div>';
+    var templatesetting = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%for(var i=0; i<inputs.length; i++){%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%} if(domid == "usermanage-modal"){%><div class="form-group width-half"><label>性别</label><div><select class="form-control select-template"><option value="m">男</option> <option value="f">女</option></select></div></div><div class="form-group custom-search-form"><label>选择角色</label><div><select class="form-control custom-select" id="select-role"><%for(var j=0; j<role.length; j++){%><option value="<%=j%>"><%=role[j]%></option><%}%></select><a type="button" class="btn btn-default" id="addRole">添加角色</a></div></div><%}%></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button><a data-toggle="modal" href="#usermanage-modal" type="button" class="btn btn-primary" id="<%=save%>">保存</a></div></div></div>';
 
 	var bt=baidu.template;
 
@@ -132,6 +133,33 @@ define(["jquery", "baiduTemplate"], function($, bt){
 		
 	}
 
+	function getUserManageTemplate(template){
+		var user = {
+			domid: "usermanage-modal",
+			modaltitle: "添加用户",
+			inputs: [
+			{id: "username", title: "用户名", type: "text"},
+			{id: "tel", title: "手机", type: "text"}],
+			sex: ["男","女"],
+			role: ["总经理","副总经理"],
+			save: "usermanage-save"
+		}
+		return bt(templatesetting, user);
+	}
+
+	function getBranchSettingTemplate(template){
+		var branch = {
+			domid: "branchsettings-modal",
+			modaltitle: "添加分店",
+			inputs: [
+			{id: "branchname", title: "分店名称", type: "text"},
+			{id: "branchlocation", title: "分店位置", type: "text"},
+			{id: "branchmanager", title: "分店管理员", type: "text"}],
+			save: "branchsetting-save"
+		}
+		return bt(templatesetting, branch);
+	}
+	
 	//点击保存自定义字段
 	function insertCustomData(name, inputtype, parent){
 		var arr = [];
@@ -231,6 +259,15 @@ define(["jquery", "baiduTemplate"], function($, bt){
 	    });      
 	}
 
+	function initRoletypeTmpl(){
+		$("#select-role").children("option").each(function(){
+            creatListTmpl($(this).text(), $("#RoleTypeModal .list"));
+        });
+        $("#RoleTypeModal .list .delete").unbind("click").bind("click", function(){
+            $(this).parent(".row").remove();
+        });  
+	}
+
 	return{
 		creatListTmpl : creatListTmpl,
 		insertCustomData : insertCustomData,
@@ -239,9 +276,12 @@ define(["jquery", "baiduTemplate"], function($, bt){
 		getMenuTmplate : getMenuTmplate,
 		initCustomTmpl : initCustomTmpl,
 		initRoomtypeTmpl : initRoomtypeTmpl,
+		initRoletypeTmpl : initRoletypeTmpl,
 		getAdvTemplate : getAdvTemplate,
 		getFpslideadvTmplate : getFpslideadvTmplate,
 		getStartadvTmplate : getStartadvTmplate,
-		getFpcontentadvTmplate : getFpcontentadvTmplate
+		getFpcontentadvTmplate : getFpcontentadvTmplate,
+		getUserManageTemplate : getUserManageTemplate,
+		getBranchSettingTemplate : getBranchSettingTemplate
 	}
 });

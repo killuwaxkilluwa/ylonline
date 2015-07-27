@@ -302,6 +302,7 @@ table.dataTable thead .sorting:after {
 .addcustominfo {
   margin-left: 1px;
   margin-top: 15px;
+  margin-bottom: 5px;
 }
 .delete {
   cursor: pointer;

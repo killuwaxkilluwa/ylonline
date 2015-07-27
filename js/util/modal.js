@@ -33,6 +33,10 @@ define(["jquery", "Tmpl","bootstrap"], function($, Tmpl){
     		});
             
 		},
+
+		createModal : function(dom, state, html){
+			$(dom).html(html).modal(state);
+		},
 		closeModal : function(dom){
 			$(dom).modal("hide");
 		},
