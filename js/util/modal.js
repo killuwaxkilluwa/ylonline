@@ -45,7 +45,9 @@ define(["jquery", "Tmpl","bootstrap"], function($, Tmpl){
 		    $("#score").val(userinfo.score);
 		},
 
-		MakeSureModal : function(dom, title, content, state){
+		MakeSureModal : function(dom, saveid, title, content, state){
+    		//$("#mainpage-wrapper").append(Tmpl.getMakeSureTmplate(domid, saveid));
+    		$(dom).html(Tmpl.getMakeSureTmplate(saveid));
     		$(dom + " .modal-title").html(title);
     		$(dom +" .modal-body").html(content);
     		$(dom).modal(state);

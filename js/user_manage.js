@@ -26,11 +26,11 @@ require(["jquery", "Table", "Modal", "Tmpl"], function ($, Table, Modal, Tmpl) {
     });
 
     $('#dataTables tbody').on( 'click', '#detele', function () {
-        new Modal.Modal().MakeSureModal("#makeSureModal", "删除用户", "确定删除用户吗？", "show");
+        new Modal.Modal().MakeSureModal("#makeSureModal","savedetele", "删除用户", "确定删除用户吗？", "show");
     });
 
     $('#dataTables tbody').on( 'click', '#blacklist', function () {
-        new Modal.Modal().MakeSureModal("#makeSureModal", "拉黑用户", "确定拉黑用户吗？", "show");
+        new Modal.Modal().MakeSureModal("#makeSureModal", "saveblacklist","拉黑用户", "确定拉黑用户吗？", "show");
     });
 
     $('#saveuserinfo').click(function(){

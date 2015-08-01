@@ -3,8 +3,15 @@ define(["jquery", "baiduTemplate"], function($, bt){
 	var tmplateadvtmp = '<div class="panel-body row"><div class="col-md-7"><div class="templatecontent"><%for(var i=0;i<inputs.length;i++){%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%}%></div></div><div class="col-md-5"><img src="<%=pic%>" alt="" width="250" class="img-thumbnail"></div></div>';
     var templateadv = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%for(var i=0; i<inputs.length;i++){%><%if(inputs[i].title == "有效期"){%><div class="form-group"><label for="<%=inputs[i].id%>">有效期: </label><div class="input-group date" id="<%=inputs[i].id%>"><input type="<%=inputs[i].type%>" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></div><%}else{%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%}}%><div class="form-group"><label>发布范围 :  </label><%for(var j=0; j<shops.length; j++){%><label class="checkbox-inline"><input type="checkbox"><%=shops[j]%></label><%}%></div><%if(template.length>0){%><div class="form-group template"><label>点击上传图片跳转页面设置</label><div class="form-group width-half"><label>选择模版 : </label><div><select class="form-control select-template"><%for(var k=0; k<template.length; k++){%><option value="<%=template[k]%>"><%=template[k]%></option><%}%></select></div></div><div class="panel panel-default"></div></div><%}%></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button><a data-toggle="modal" href="#<%=domid%>" type="button" class="btn btn-primary" id="<%=save%>">保存</a></div></div></div></div>';
     var templatesetting = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title"><%=modaltitle%></h4></div><div class="modal-body"><%for(var i=0; i<inputs.length; i++){%><div class="form-group"><label for="<%=inputs[i].id%>"><%=inputs[i].title%></label><input type="<%=inputs[i].type%>" class="form-control" id="<%=inputs[i].id%>" placeholder="<%=inputs[i].title%>"></div><%} if(domid == "usermanage-modal"){%><div class="form-group width-half"><label>性别</label><div><select class="form-control select-template"><option value="m">男</option> <option value="f">女</option></select></div></div><div class="form-group custom-search-form"><label>选择角色</label><div><select class="form-control custom-select" id="select-role"><%for(var j=0; j<role.length; j++){%><option value="<%=j%>"><%=role[j]%></option><%}%></select><a type="button" class="btn btn-default" id="addRole">添加角色</a></div></div><%}%></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button><a data-toggle="modal" href="#usermanage-modal" type="button" class="btn btn-primary" id="<%=save%>">保存</a></div></div></div>';
-
+    var templatemakesure = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"></h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-primary" id="<%=save%>">确定</button></div></div></div>'
 	var bt=baidu.template;
+
+	function getMakeSureTmplate(saveid){
+		var mk = {
+			save: saveid
+		}
+		return bt(templatemakesure, mk);
+	}
 
 	function getInsertUserTmplate(){
 		var user = {
@@ -18,7 +25,6 @@ define(["jquery", "baiduTemplate"], function($, bt){
 			{id: "mail",title: "邮箱:",type: "text"},
 			{id: "level",title: "等级:",type: "text"},
 			{id: "score",title: "积分:",type: "text"}],
-			//customdata: [{title: "test",type:"text"},{title: "tests",type: "number"}],
 			save: "saveuserinfo"
 		}
 		return bt(tmplate, user);
@@ -301,6 +307,7 @@ define(["jquery", "baiduTemplate"], function($, bt){
 		getFpcontentadvTmplate : getFpcontentadvTmplate,
 		getUserManageTemplate : getUserManageTemplate,
 		getBranchSettingTemplate : getBranchSettingTemplate,
-		getInsertUserTmplate : getInsertUserTmplate
+		getInsertUserTmplate : getInsertUserTmplate,
+		getMakeSureTmplate : getMakeSureTmplate
 	}
 });
