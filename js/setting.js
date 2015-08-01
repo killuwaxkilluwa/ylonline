@@ -1,15 +1,9 @@
 require.config({
     baseUrl: "../js",
     paths: {
-        "jquery": "jquery-1.11.2.min",
-        "bootstrap": "bootstrap.min",
-        "Table": "util/table",
-        "Modal": "util/modal",
-        "Tmpl": "util/tmpl",
         "tree": "bootstrap-treeview.min"
     },
     shim: {
-        "bootstrap": {"deps" : ["jquery"]},
         "tree": {"deps" : ["jquery"]}
     }
 });
@@ -71,18 +65,23 @@ require(["jquery", "Table", "Modal", "Tmpl", "tree"], function ($, Table, Modal,
             nodes: [
               {
                 text: "增加",
+                href: "#node-1"
               },
               {
-                text: "删除"
+                text: "删除",
+                href: "#node-1"
               },
               {
-                text: "修改"
+                text: "修改",
+                href: "#node-1"
               },
               {
-                text: "查询"
+                text: "查询",
+                href: "#node-1"
               },
               {
-                text: "发布"
+                text: "发布",
+                href: "#node-1"
               }
             ]
           },
@@ -199,8 +198,8 @@ require(["jquery", "Table", "Modal", "Tmpl", "tree"], function ($, Table, Modal,
           showIcon: false,
           showCheckbox: true,
           onNodeChecked: function(event, node) {
-            $('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
-            console.log(findCheckableNodess());
+            //$('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
+            console.log($('#tree').treeview('getParent', node));
           }
           // onNodeUnchecked: function (event, node) {
           //   $('#checkable-output').prepend('<p>' + node.text + ' was unchecked</p>');

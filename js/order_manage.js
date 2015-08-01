@@ -1,21 +1,3 @@
-require.config({
-    baseUrl: "../js",
-    paths: {
-        "jquery": "jquery-1.11.2.min",
-        //"bootstrap": "bootstrap.min",
-        //"metisMenu": "metisMenu/metisMenu.min",
-        //"sbamin": "sb-admin-2",
-        "Table": "util/table",
-        "Modal": "util/modal",
-        "Tmpl": "util/tmpl"
-    }
-    //  shim : {
-    //     "metisMenu" : {"deps": ["jquery"]},
-    //     "sbadmin" : { "deps" :["jquery","metisMenu"] },
-    //     "bootstrap" : {"deps" : ["jquery"]}
-    // }
-});
-
 require(["jquery", "Table", "Modal","Tmpl"], function ($, Table, Modal) {
     var url = "../pages/userdata.txt";
     var columns = [

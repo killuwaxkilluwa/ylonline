@@ -1,17 +1,11 @@
 require.config({
     baseUrl: "../js",
     paths: {
-        "jquery": "jquery-1.11.2.min",
-        "bootstrap": "bootstrap.min",
         "datetimepicker": "bootstrap-datetimepicker.min",
         "moment": "moment/moment.min",
-        "zh-cn" : "moment/locale/zh-cn",
-        "Table": "util/table",
-        "Modal": "util/modal",
-        "Tmpl": "util/tmpl"
+        "zh-cn" : "moment/locale/zh-cn"
     },
     shim: {
-        "bootstrap": {"deps" : ["jquery"]},
         "datetimepicker": {"deps" : ["jquery","bootstrap","moment","zh-cn"]}
     }
 });
@@ -54,26 +48,9 @@ require(["jquery", "Table", "Modal", "Tmpl", "moment","datetimepicker"], functio
         }else if($(this).attr("id") == "startadv-btn"){
             new Modal.Modal().createAdvModal("#startadv-modal", "show", Tmpl.getStartadvTmplate(), "#stdate");
         }else if($(this).attr("id") == "fpcontentadv-btn"){
-           new Modal.Modal().createAdvModal("#fpcontentadv-modal", "show", Tmpl.getFpcontentadvTmplate(), "#fpcdate");
+            new Modal.Modal().createAdvModal("#fpcontentadv-modal", "show", Tmpl.getFpcontentadvTmplate(), "#fpcdate");
         }
         
     });
-
-    
-    // $("#fpslideadv-modal .select-template").change(function(){
-    //     $("#fpslideadv-modal .panel").html(Tmpl.getAdvTemplate($(this).val()));
-
-    // });
-
-    // $(document).on("change", "#fpslideadv-modal .select-template", function(){
-    //     $("#fpslideadv-modal .panel").html(Tmpl.getAdvTemplate($(this).val()));
-    // });
-
-    // $("#insertfirpage").click(function(){
-    //     $('#datetimepicker1').datetimepicker({
-    //         locale: 'zh-cn'
-    //     });
-    //     $("#firpage").modal("show");
-    // });
     
 });
