@@ -10,10 +10,13 @@ require(["jquery", "Table", "Modal","Tmpl"], function ($, Table, Modal) {
         { "data": "score" },
         { "data": null }
     ];
-    var usertable = new Table.Table();
-    usertable.createTable("#dataTables-example", "tpr", url, columns, 7);
-    usertable.addSearch(".dsearch", usertable); 
+    // var usertable = new Table.Table();
+    // usertable.createTable("#dataTables-example", "tpr", url, columns, 7);
+    // usertable.addSearch(".dsearch", usertable); 
 
+    var table = new Table.Table();
+    var usertable = table.createTable("#dataTables-example", "tpr", url, columns, 7);
+    table.addSearch(".dsearch", usertable); 
 
 
 });

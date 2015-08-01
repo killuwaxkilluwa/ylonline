@@ -22,9 +22,13 @@ require(["jquery", "Table", "Modal", "Tmpl", "moment","datetimepicker"], functio
         { "data": "score" },
         { "data": null }
     ];
-    var usertable = new Table.Table();
-    usertable.createTable("#dataTables-example", "tpr", url, columns, 7);
-    usertable.addSearch(".dsearch", usertable); 
+    // var usertable = new Table.Table();
+    // usertable.createTable("#dataTables-example", "tpr", url, columns, 7);
+    // usertable.addSearch(".dsearch", usertable); 
+
+    var table = new Table.Table();
+    var advtable = table.createTable("#dataTables-example", "tpr", url, columns, 7);
+    //table.addSearch(".dsearch", advtable); 
 
     $("#side-menu a").click(function(){
         switch($(this).attr("id")){
