@@ -1,20 +1,10 @@
-require.config({
-    baseUrl: "../js",
-    paths: {
-        "bootstrap": "bootstrap.min"
-    },
-    shim: {
-    	"bootstrap" : {"deps" : ["jquery"]}
-    }
-});
-
 define(["jquery", "Tmpl","bootstrap"], function($, Tmpl){
 	function Modal(){}
 	Modal.prototype = {
 		createModal : function(dom, state, html){
-			$(dom).html(html);
-			$(dom).modal(state);
+			$(dom).html(html).modal(state);
 			$(document).on("click", dom + " .addCustomData", function(){
+		        console.log("lll");
 		        Tmpl.initCustomTmpl(dom);
         		$("#CustomDataModal").modal("show");  
 		    });
@@ -34,9 +24,6 @@ define(["jquery", "Tmpl","bootstrap"], function($, Tmpl){
             
 		},
 
-		createModal : function(dom, state, html){
-			$(dom).html(html).modal(state);
-		},
 		closeModal : function(dom){
 			$(dom).modal("hide");
 		},

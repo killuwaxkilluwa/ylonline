@@ -65,23 +65,23 @@ require(["jquery", "Table", "Modal", "Tmpl", "tree"], function ($, Table, Modal,
             nodes: [
               {
                 text: "增加",
-                href: "#node-1"
+                id: "node1-1"
               },
               {
                 text: "删除",
-                href: "#node-1"
+                id: "node1-1"
               },
               {
                 text: "修改",
-                href: "#node-1"
+                id: "node1-1"
               },
               {
                 text: "查询",
-                href: "#node-1"
+                id: "node1-1"
               },
               {
                 text: "发布",
-                href: "#node-1"
+                id: "node1-1"
               }
             ]
           },
@@ -198,17 +198,25 @@ require(["jquery", "Table", "Modal", "Tmpl", "tree"], function ($, Table, Modal,
           showIcon: false,
           showCheckbox: true,
           onNodeChecked: function(event, node) {
-            //$('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
-            console.log($('#tree').treeview('getParent', node));
+            console.log(node.nodes);
+            if(node.nodes){
+              for(var j=0; j<node.nodes.length; j++){
+                $checkableTree.treeview('checkNode', [ node.nodes[j].nodeId, { silent: $('#chk-check-silent').is(':checked') }]);
+              }
+            }
+          },
+          onNodeUnchecked: function (event, node) {  
+            if(node.nodes){
+              for(var j=0; j<node.nodes.length; j++){
+                $checkableTree.treeview('uncheckNode', [ node.nodes[j].nodeId, { silent: $('#chk-check-silent').is(':checked') }]);
+              }
+            }
           }
-          // onNodeUnchecked: function (event, node) {
-          //   $('#checkable-output').prepend('<p>' + node.text + ' was unchecked</p>');
-          // }
         });
     
-    var findCheckableNodess = function() {
-        return $checkableTree.treeview('search', [ $('#input-check-node').val(), { ignoreCase: false, exactMatch: false } ]);
-    };
+    // var findCheckableNodess = function() {
+    //     return $checkableTree.treeview('search', [ $('#input-check-node').val(), { ignoreCase: false, exactMatch: false } ]);
+    // };
 
     //in order to fix close the second modal then the first modal cant scroll
     $("#RoleTypeModal").on("hidden.bs.modal" , function() {
