@@ -1,4 +1,23 @@
 {
+	"columns" :[
+            { "data": "userid" },
+            { "data": "username" },
+            { "data": "sex" },
+            { "data": "tel" },
+            { "data": "mail" },
+            { "data": "level" },
+            { "data": "score" },
+            { "data": null }
+        ],
+	"title":{
+		"userid" : "用户ID",
+		"username" : "用户名",
+		"sex" : "性别",
+		"tel" : "电话",
+		"mail" : "邮箱",
+		"level" : "等级",
+		"score" : "积分" 
+	},
 	"data":[
 		{
 			"userid" : "1",
@@ -686,15 +705,7 @@
 		}
 
 		
-	],
-	"title":{
-		"userid" : "用户ID",
-		"username" : "用户名",
-		"sex" : "性别",
-		"tel" : "电话",
-		"mail" : "邮箱",
-		"level" : "等级",
-		"score" : "积分" 
-	}
+	]
+	
 
 }
