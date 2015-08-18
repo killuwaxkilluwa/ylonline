@@ -9,19 +9,12 @@ require.config({
 });
 
 require(["jquery", "Table", "Modal", "Tmpl", "tree"], function ($, Table, Modal, Tmpl, tree) {
-    var url = "../pages/userdata.txt";
-    var columns = [
-        { "data": "userid" },
-        { "data": "username" },
-        { "data": "sex" },
-        { "data": "tel" },
-        { "data": "mail" },
-        { "data": "level" },
-        { "data": "score" },
-        { "data": null }
-    ];
-    var usertable = new Table.Table();
-    usertable.createTable("#dataTables-example", "tpr", url, columns, 7);
+    var urlcontent = "http://121.40.103.141:8091/ylbms/users";
+    var urltitle = "http://192.168.1.10:8080/ylbms/pagesconfig/users.json";
+    var oprationhtml = "<button type='button' class='btn btn-primary btn-sm optionbutton' id='edit'>编辑</button><button type='button' class='btn btn-danger btn-sm optionbutton' id='detele'>删除</button>";
+    var table = new Table.Table();
+    var usertable = table.createTable("#dataTables", "tlpr", urlcontent, urltitle, oprationhtml);
+    table.addSearch(".dsearch", usertable); 
 
     $("#side-menu a").click(function(){
         switch($(this).attr("id")){
